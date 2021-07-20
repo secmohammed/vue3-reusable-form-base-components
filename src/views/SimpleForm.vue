@@ -1,10 +1,12 @@
 <script lang="tsx">
 import { defineComponent, reactive } from 'vue';
 import BaseInput from '@/components/BaseInput.vue';
+import BaseSelect from '@/components/BaseSelect.vue';
 
 export default defineComponent({
   components: {
     BaseInput,
+    BaseSelect,
   },
   setup() {
     const state = reactive({
@@ -34,30 +36,20 @@ export default defineComponent({
       <div>
         <h1>Create an event</h1>
         <form>
-          <label>Select a category</label>
-          <select v-model={state.event.category}>
-            {state.categories.map((category) => (
-              <option
-                value={category}
-                key={category}
-                selected={category === state.event.category}
-              >
-                {category}
-              </option>
-            ))}
-          </select>
+          <BaseSelect label="Select Your Category" options={state.categories} v-model={state.event.category}/>
 
           <h3>Name & describe your event</h3>
           <BaseInput
             v-model={state.event.title}
             label="Title"
+            // @ts-ignore
             type="text"
           />
           <BaseInput
             v-model={state.event.description}
             label="Description"
+            // @ts-ignore
             type="text"
-
           />
 
           <h3>Where is your event?</h3>
@@ -65,6 +57,7 @@ export default defineComponent({
           <BaseInput
             v-model={state.event.location}
             label="Location"
+            // @ts-ignore
             type="text"
           />
 

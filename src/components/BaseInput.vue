@@ -16,7 +16,7 @@ export default defineComponent({
   },
   setup(props, { attrs, emit }) {
     const handleInputChange = (e: Event) => {
-      emit('update:modelValue', e.target.value);
+      emit('update:modelValue', (e.target as HTMLTextAreaElement).value);
     };
     return () => (
       <>
