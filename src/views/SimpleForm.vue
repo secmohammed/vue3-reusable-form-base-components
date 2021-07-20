@@ -1,12 +1,14 @@
 <script lang="tsx">
 import { defineComponent, reactive } from 'vue';
 import BaseInput from '@/components/BaseInput.vue';
+import BaseCheckBox from '@/components/BaseCheckBox.vue';
 import BaseSelect from '@/components/BaseSelect.vue';
 
 export default defineComponent({
   components: {
     BaseInput,
     BaseSelect,
+    BaseCheckBox,
   },
   setup() {
     const state = reactive({
@@ -74,13 +76,11 @@ export default defineComponent({
 
           <h3>Extras</h3>
           <div>
-            <input type="checkbox" v-model={state.event.extras.catering} class="field" />
-            <label>Catering</label>
+            <BaseCheckBox v-model={state.event.extras.catering} label="Catering" />
           </div>
 
           <div>
-            <input type="checkbox" v-model={state.event.extras.music} class="field" />
-            <label>Live music</label>
+            <BaseCheckBox v-model={state.event.extras.music} label="Live Music" />
           </div>
 
           <button class="button -fill-gradient" type="submit">Submit</button>
