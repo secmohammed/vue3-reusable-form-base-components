@@ -3,12 +3,14 @@ import { defineComponent, reactive } from 'vue';
 import BaseInput from '@/components/BaseInput.vue';
 import BaseCheckBox from '@/components/BaseCheckBox.vue';
 import BaseSelect from '@/components/BaseSelect.vue';
+import BaseRadioGroup from '@/components/BaseRadioGroup.vue';
 
 export default defineComponent({
   components: {
     BaseInput,
     BaseSelect,
     BaseCheckBox,
+    BaseRadioGroup,
   },
   setup() {
     const state = reactive({
@@ -32,6 +34,10 @@ export default defineComponent({
           music: false,
         },
       },
+      petOptions: [
+        { label: 'Yes', value: 1 },
+        { label: 'No', value: 0 },
+      ],
 
     });
     return () => (
@@ -65,13 +71,7 @@ export default defineComponent({
 
           <h3>Are pets allowed?</h3>
           <div>
-            <input type="radio" v-model={state.event.pets} value="1" name="pets" />
-            <label>Yes</label>
-          </div>
-
-          <div>
-            <input type="radio" v-model={state.event.pets} value="0" name="pets" />
-            <label>No</label>
+            <BaseRadioGroup v-model={state.event.pets} modelValue={state.event.pets} name="pets" options={state.petOptions} vertical />
           </div>
 
           <h3>Extras</h3>
@@ -85,6 +85,7 @@ export default defineComponent({
 
           <button class="button -fill-gradient" type="submit">Submit</button>
         </form>
+
       </div>
     );
   },
